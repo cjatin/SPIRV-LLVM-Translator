@@ -205,7 +205,7 @@ std::string mapSPIRVTypeToOCLType(SPIRVType *Ty, bool Signed) {
 
 PointerType *getOrCreateOpaquePtrType(Module *M, const std::string &Name,
                                       unsigned AddrSpace) {
-  auto OpaqueType = StructType::getTypeByName(M->getContext(), Name);
+  auto OpaqueType = M->getTypeByName(Name);
   if (!OpaqueType)
     OpaqueType = StructType::create(M->getContext(), Name);
   return PointerType::get(OpaqueType, AddrSpace);
